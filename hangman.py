@@ -114,8 +114,8 @@ def redrawWindow(win, btn):
     for k in range(len(blits)):
         screen.blit(font.render(f'{blits[k][0]}', True, (0, 0, 0)), (new_list[blits[k][1]], 500))
     if len(blits) == len(temp_given_word):
-        screen.blit(text_win, (screen.get_width() / 2 - text_win.get_width() / 2,
-                               screen.get_height() / 2 - text_win.get_height() / 2))
+        screen.blit(text_win, (round(screen.get_width() / 2 - text_win.get_width() / 2),
+                               round(screen.get_height() / 2 - text_win.get_height() / 2)))
     if hang_img >= 7:
         screen.blit(text_lose, (round(screen.get_width() / 2 - text_win.get_width() / 2),
                                 round(screen.get_height() / 2 - text_win.get_height() / 2)))
@@ -175,6 +175,9 @@ def main(bns):
                 pygame.quit()
 
             if event.type == pygame.USEREVENT and hang_img >= 7:
+                resetEverything()
+
+            if event.type == pygame.USEREVENT and len(blits) == len(temp_given_word):
                 resetEverything()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
